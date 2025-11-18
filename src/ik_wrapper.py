@@ -42,7 +42,7 @@ class IKServer:
             joint_angles = p.calculateInverseKinematics(
                 self.d1_arm,
                 self.end_effector_index,
-                target_pos,
+                target_position,
                 maxNumIterations=100, 
                 residualThreshold=1e-5
             )
@@ -50,7 +50,7 @@ class IKServer:
             joint_angles = p.calculateInverseKinematics(
                 self.d1_arm,
                 self.end_effector_index,
-                target_pos,
+                target_position,
                 target_orientation,
                 maxNumIterations=100, 
                 residualThreshold=1e-5
