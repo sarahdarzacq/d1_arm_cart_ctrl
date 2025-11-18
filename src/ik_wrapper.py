@@ -5,7 +5,7 @@ import math
 p.connect(p.DIRECT)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
-d1_arm  = p.loadURDF("urdf/d1_550_description.urdf")
+d1_arm  = p.loadURDF("d1_550_description/urdf/d1_550_description.urdf")
 end_effector_index = 6
 
 target_pos = [1, 1, 1]
