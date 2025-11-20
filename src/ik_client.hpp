@@ -17,7 +17,7 @@ class IKClient {
         bool m_connected; 
     
     public: 
-        IKClient(const std::string& host="127.0.0.1", int port=5555)
+        IKClient(const std::string& host="192.168.123.10", int port=5555)
         : m_host(host), m_port(port), m_sock(-1), m_connected(false) {}
 
         ~IKClient() { disconnect(); }

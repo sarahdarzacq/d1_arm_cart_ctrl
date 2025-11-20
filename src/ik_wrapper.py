@@ -3,12 +3,13 @@ import pybullet_data
 import socket
 import numpy as np
 import struct
+import math
 import signal 
 import sys
 
 
 class IKServer:
-    def __init__(self, urdf_path, host='127.0.0.1', port=5555, verbose=True):
+    def __init__(self, urdf_path, host='0.0.0.0', port=5555, verbose=True):
         self.host = host
         self.port = port
         self.running = True
@@ -19,8 +20,8 @@ class IKServer:
         print("Pybullet Initialized")
 
         self.d1_arm  = p.loadURDF(urdf_path)
-        self.num_joints = p.getNumJoints(self.d1_arm)
-        if self.num_joints is not 8: 
+        self.num_joints = p.getNumJoints(self.d1_arm) - 2
+        if self.num_joints is not 6: 
             print(f"Error: Incorrect number of joints reported. {self.num_joints} instead of 8")
         
         self.joint_indices = []
@@ -56,7 +57,7 @@ class IKServer:
                 residualThreshold=1e-5
             )
         
-        return [joint_angles[i] for i in self.joint_indices]
+        return [math.degrees(joint_angles[i]) for i in range(self.num_joints)]
 
     def handle_client(self, conn, addr): 
         print(f"Connected: {addr}")
